@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/public/css/style.css" />
+    <link rel="stylesheet" href="/public/css/fontawesome-free-6.4.2-web/css/all.min.css" />
+
+
+
+
+</head>
+<body class="body scroll">
+    <div class="main">
+        <div style="height: 200px;">
+            
+                <label class="label_small" for="employee_name_input">اسم الموظف</label>
+                <input class="hover login_textbox" type="text" name="employee_name_input" id="employee_name_input">
+                <input type="hidden" name="employee_id" id="employee_id">
+                    <button class="login_button" type="button" id="saveBtn" onclick="saveEmployee()">حفظ</button>
+                    <button class="login_button" type="submit" id="updateBtn" onclick="updateEmployee()">تعديل</button>
+
+            
+        </div>
+<!-- 
+        <div class="dropdown_select hover flex_H" id="dropdown_select">
+            <input type="text" class="dropdown_select_input" id="dropdown_select_input" readonly>
+            <input type="hidden" id="id_hidden_input" readonly>
+            <div class="clearArrow">✗</div>
+            <div class="upArrow">▼</div>
+        </div> -->
+
+
+        <!-- search in table -->
+        <div id="search-div" style="display: flex;">
+            <div class="search_div">
+                <input type="text" name="searchInput" id="searchInput" placeholder="search" class="hover">
+                <div class="clearArrow" id="clearArrow1" title="clear search">✗</div>
+                <i class="fa-solid fa-magnifying-glass left_icon"></i>
+            </div>
+            <button id="searchBtn" name="searchBtn" class="searchBtn">search</button>
+        </div>
+        
+        <!-- table container filled by js -->
+        <div id="table-container"></div>
+    </div>
+
+
+    <script src="/public/scripts/employees.js"></script>
+
+  
+
+    <script>
+
+    </script>
+    
+
+    
+    
+    
+    
+
+</body>
+</html>

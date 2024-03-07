@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en" dir="rtl">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <link rel="stylesheet" href="/public/css/style.css" />
+  <link rel="stylesheet" href="/public/css/fontawesome-free-6.4.2-web/css/all.min.css" />
+</head>
+
+<body class="body scroll" style="height: 100vh;">
+  <!-- el body de Only hyea ely n3mlha 100vh  lakn ba2y el pages NOOO -->
+  <div class="header">
+    <div class="header_dark_lang_control">
+      <a style="cursor: pointer" onclick="dark_mode_fn()">
+        <i class="fa-solid fa-circle-half-stroke"></i>
+      </a>
+      <a href="">
+        <p>en</p>
+      </a>
+    </div>
+
+    <div class="header_menue">
+      <a href="">
+        <i class="fas fa-home"></i>
+        <p>Home</p>
+      </a>
+
+      <a href="">
+        <i class="fas fa-home"></i>
+        <p>Home</p>
+      </a>
+    </div>
+  </div>
+
+  <div class="main">
+    <div class="container">
+      <div class="sub_header">
+        <div id="MenueIcon" class="MenueIcon">
+          <i class="fas fa-bars header__menu"></i>
+        </div>
+        <p>this is sub_header</p>
+      </div>
+
+      <div class="sub_container">
+        <div id="sidebar_Parent" class="sidebar_Parent">
+          <div class="sidebar">
+            
+            <div id="closeMenueIcon" class="closeMenueIcon">
+              <i class="fa-solid fa-square-xmark"></i>
+            </div>
+            
+
+            <a href="employees.html" target="localspace">
+              <i class="fas fa-home"></i>
+              <p>الموظفين</p>
+            </a>
+
+
+            <a href="#" onclick="openPage('employees')">
+              <i class="fas fa-home"></i>
+              تقرير عن موظف
+            </a>
+
+            <!-- <a href="index2.html" target="localspace"> -->
+            <a href="#" onclick="openPage('attendance')">
+              <i class="fas fa-home"></i>
+              تقرير عن موظف
+            </a>
+
+
+            <a href="#" onclick="openPage('test')">
+              <i class="fas fa-home"></i>
+              test
+            </a>
+
+            <a href="">
+              <i class="fas fa-home"></i>
+              <p>تقرير عن الموظفين ككل</p>
+            </a>
+
+            <a href="">
+              <i class="fas fa-home"></i>
+              <p>Home</p>
+            </a>
+
+            <a href="transaction.html" target="localspace">
+              <i class="fas fa-home"></i>
+              <p>القيود اليومية</p>
+            </a>
+            <!-- <a href="index2.html" target="localspace"> -->
+            <a href="#" onclick="document.getElementById('localspace').src='/index2'; return false;">
+              <i class="fas fa-home"></i>
+              Test ( index2 )
+            </a>
+          </div>
+
+          <a id="Custmize_sidebar" href="#">
+            <p>تخصيص</p>
+          </a>
+        </div>
+
+        <div id="white_backcolor" class="white_backcolor">
+
+          <!-- <iframe id="localspace" name="localspace"
+            onload='javascript:(function(o){o.style.height=o.contentWindow.document.body.scrollHeight+"px";}(this));'
+            style="height: 200px; width: 100%; border: none; overflow: hidden;">
+          </iframe> -->
+
+          <iframe id="localspace" name="localspace"
+            style="height: 200px; width: 100%; border: none; overflow: hidden; flex: 1;">
+          </iframe>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer">
+      <p>this is footer</p>
+    </div>
+  </div>
+
+  <script src="/public/scripts/main.js"></script>
+
+
+</body>
+
+</html>
