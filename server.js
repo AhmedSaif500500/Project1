@@ -17,13 +17,7 @@ const port = 3000;
 const dotenv = require('dotenv'); // npm i dotenv >> create a file named (.env) in root put in it any variables to secure it like pass 
 dotenv.config(); // قراءة متغيرات البيئة من ملف .env
 
-const db = pgp({
-    host: process.env.DB_HOST,
-    port: process.env.DB_PORT,
-    database: process.env.DB_DATABASE,
-    user: process.env.DB_USER,
-    password: process.env.DB_PASSWORD
-});
+const db = pgp(process.env.DB_CONNECTION_STRING); //
 
 // التحقق من الاتصال بقاعدة البيانات
 db.connect()
