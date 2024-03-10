@@ -17,8 +17,8 @@ const port = 3000;
 const dotenv = require('dotenv'); // npm i dotenv >> create a file named (.env) in root put in it any variables to secure it like pass 
 dotenv.config(); // قراءة متغيرات البيئة من ملف .env
 
-const db = pgp('postgresql://AhmedSaif500500:pD1UnvLHVok6@ep-ancient-mud-a5011hoj.us-east-2.aws.neon.tech/employee?sslmode=require'); //
-
+//const db = pgp('postgresql://AhmedSaif500500:pD1UnvLHVok6@ep-ancient-mud-a5011hoj.us-east-2.aws.neon.tech/employee?sslmode=require'); //
+const db = pgp(process.env.DB_CONNECTION_STRING); //
 // التحقق من الاتصال بقاعدة البيانات
 db.connect()
     .then(obj => {
