@@ -1,53 +1,112 @@
-// open Terminal vscode 
-// npm init -y
-// npm install express pg-promise body-parser dotenv
-// create a file named (.env) in root put in it any variables to secure it like pass  for example put this in .env file ( pass="123" ) then call it here like ( password : env.pass)
-// this page is name server.js put it in root file
-// index.html put it in root file
-// make folder named views put it in root file you should put all html files expept index.html file  in it
-// make folder named public put it in root file you should make folders in it for  css and scripts
 
+
+//#region  Helps and shourcut
+
+//#region Comments Color
+// ! #region app-Started
+/*
+// ! #region Start-Database
+?  Start-Database
+&  Start-Database
+^  Start-Database
+*  Start-Database
+TODO #region Start-Database
+~  Start-Database
+// removed code
+*/
+//#endregion  End / Comments Color
+
+//#region shourcuts
+/*
+1 : collapse ( Fold ) Current region : CTRL + Shift + {
+2 : extended ( Unfold ) Current region : CTRL + Shift + }
+3 : collapse ( Fold ) All region : CTRL + K , CTRL + Zero  in top of keyboard
+3 : extended ( Unfold ) All region : CTRL + K , CTRL + j 
+*/
+
+//#endregion End / shourcut
+
+
+//#endregion End / Helps and shourcut
+
+
+//#region Guid
+//===================
+
+/*
+open Terminal vscode 
+ npm init -y
+ npm install express pg-promise body-parser dotenv
+ create a file named (.env) in root put in it any variables to secure it like pass  for example put this in .env file ( pass="123" ) then call it here like ( password : env.pass)
+ this page is name server.js put it in root file
+ index.html put it in root file
+ make folder named views put it in root file you should put all html files expept index.html file  in it
+ make folder named public put it in root file you should make folders in it for  css and scripts
+*/
+
+//#endregion End-Guid
+
+
+
+// ! #region app-Started
+//=======================
 const express = require("express");
 const path = require('path'); // استدعاء مكتبة path
 const bodyParser = require('body-parser');
-const pgp = require('pg-promise')();
 const app = express();
 const port = 3000;
-
-const dotenv = require('dotenv'); // npm i dotenv >> create a file named (.env) in root put in it any variables to secure it like pass 
-dotenv.config(); // قراءة متغيرات البيئة من ملف .env
-
-//const db = pgp('postgresql://AhmedSaif500500:pD1UnvLHVok6@ep-ancient-mud-a5011hoj.us-east-2.aws.neon.tech/employee?sslmode=require'); 
-const db = pgp(process.env.DB_CONNECTION_STRING); //
-// التحقق من الاتصال بقاعدة البيانات
-db.connect()
-    .then(obj => {
-        console.log('Connected to the database');
-        obj.done(); // success, release the connection;
-    })
-    .catch(error => {
-        console.error('Error connecting to the database:', error.message);
-        process.exit(); // terminate the application on connection error
-    });
-
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 const multer = require('multer'); // 
 const upload = multer();
-//const bodyParser = require('body-parser');  app.use(bodyParser.json());   app.use(express.urlencoded({extended:true})); // سطر مهم خاص بالبودى بارسر
-
-
-
-// تحميل جميع الملفات في مجلد 'public' > لملفات الـ CSS والجافا سكريبت
-app.use('/public', express.static('public'));
-
-// تعيين المجلد 'views' كمجلد للقوالب
-app.set('views', path.join(__dirname, 'views'));
-
-// تعيين نوع المحرك لقوالب الـ HTML
-app.set('view engine', 'html');
+app.use('/public', express.static('public')); // تحميل جميع الملفات في مجلد 'public' > لملفات الـ CSS والجافا سكريبت
+app.set('views', path.join(__dirname, 'views')); // تعيين المجلد 'views' كمجلد للقوالب
+app.set('view engine', 'html'); // تعيين نوع المحرك لقوالب الـ HTML
 app.engine('html', require('ejs').renderFile);
 
+//#endregion End / App-Started
+
+
+
+
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+//=======================================
+const pgp = require('pg-promise')();
+const dotenv = require('dotenv');
+dotenv.config();
+
+// قراءة قيمة DB_SSL من ملف .env وتحويلها إلى قيمة بوليانية
+const sslEnabled = process.env.DB_SSL === 'true';
+
+const connection = {
+    connectionString: process.env.DB_CONNECTION_STRING,
+    ssl: sslEnabled ? {
+        rejectUnauthorized: true // تأكيد صحة شهادة SSL
+    } : false // تعطيل تقنية SSL
+};
+
+const db = pgp(connection);
+
+// تحقق من الاتصال بقاعدة البيانات
+db.connect()
+    .then(obj => {
+        console.log('Connected to the database'); // في حالة النجاح
+        obj.done(); 
+    })
+    .catch(error => {
+        console.error('Error connecting to the database:', error.message); // في حالة الفشل
+        process.exit();
+    });
+
+
+//========================================================================
+//#endregion End-Database
 
 
 
@@ -151,7 +210,7 @@ app.post('/updateEmployee', async (req, res) => {
 
         // إعادة تحميل الصفحة بمجرد اكتمال العمليات
         res.json({ success: true, message: 'تم حفظ الموظف بنجاح' });
-      
+
     } catch (error) {
         console.error('Error updating employee:', error.message);
         res.status(500).json({ success: false, message: 'حدث خطأ أثناء تحديث الموظف' });
@@ -202,7 +261,7 @@ app.post('/addNewAttendance', async (req, res) => {
 
         // Commit the transaction
         await db.none('COMMIT');
-        
+
         // إعادة تحميل الصفحة بمجرد اكتمال العمليات
         res.json({ success: true, message: 'تم حفظ الموظف بنجاح' });
 
@@ -298,7 +357,7 @@ app.post('/updateAttendance', (req, res) => {
 
 
 app.listen(port, () => {
-    console.log(`السيرفر يعمل على http://localhost:${port}`);
+    console.log(`server is runing on http://localhost:${port}`);
 });
 
 //  test 2
